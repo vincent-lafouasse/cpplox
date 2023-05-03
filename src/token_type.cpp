@@ -1,84 +1,49 @@
 #include "token_type.h"
 
-std::string token_type_repr(TokenType type) {
-  switch (type) {
-    case TokenType::LEFT_PAREN:
-      return "LeftParen";
-    case TokenType::RIGHT_PAREN:
-      return "RightParen";
-    case TokenType::LEFT_BRACE:
-      return "LeftBrace";
-    case TokenType::RIGHT_BRACE:
-      return "RightBrace";
-    case TokenType::COMMA:
-      return "Comma";
-    case TokenType::DOT:
-      return "Dot";
-    case TokenType::MINUS:
-      return "Minus";
-    case TokenType::PLUS:
-      return "Plus";
-    case TokenType::SEMICOLON:
-      return "Semicolon";
-    case TokenType::SLASH:
-      return "Slash";
-    case TokenType::STAR:
-      return "Star";
-    case TokenType::BANG:
-      return "Bang";
-    case TokenType::BANG_EQUAL:
-      return "BangEqual";
-    case TokenType::EQUAL:
-      return "Equal";
-    case TokenType::EQUAL_EQUAL:
-      return "EqualEqual";
-    case TokenType::GREATER:
-      return "Greater";
-    case TokenType::GREATER_EQUAL:
-      return "GreaterEqual";
-    case TokenType::LESS:
-      return "Less";
-    case TokenType::LESS_EQUAL:
-      return "LessEqual";
-    case TokenType::IDENTIFIER:
-      return "Identifier";
-    case TokenType::STRING:
-      return "String";
-    case TokenType::NUMBER:
-      return "Number";
-    case TokenType::AND:
-      return "And";
-    case TokenType::CLASS:
-      return "Class";
-    case TokenType::ELSE:
-      return "Else";
-    case TokenType::FALSE:
-      return "False";
-    case TokenType::FUN:
-      return "Fun";
-    case TokenType::FOR:
-      return "For";
-    case TokenType::IF:
-      return "If";
-    case TokenType::NIL:
-      return "Nil";
-    case TokenType::OR:
-      return "Or";
-    case TokenType::PRINT:
-      return "Print";
-    case TokenType::RETURN:
-      return "Return";
-    case TokenType::SUPER:
-      return "Suoer";
-    case TokenType::THIS:
-      return "This";
-    case TokenType::TRUE:
-      return "True";
-    case TokenType::VAR:
-      return "Var";
-    case TokenType::WHILE:
-      return "While";
-    case TokenType::EOF_:
-      return "EOF";
-  }
+#include <unordered_map>
+
+std::unordered_map<TokenType, std::string> TOKEN_TYPE_TO_STR = {
+    {TokenType::LEFT_PAREN, "LeftParen"},
+    {TokenType::RIGHT_PAREN, "RightParen"},
+    {TokenType::LEFT_BRACE, "LeftBrace"},
+    {TokenType::RIGHT_BRACE, "RightBrace"},
+    {TokenType::COMMA, "Comma"},
+    {TokenType::DOT, "Dot"},
+    {TokenType::MINUS, "Minus"},
+    {TokenType::PLUS, "Plus"},
+    {TokenType::SEMICOLON, "Semicolon"},
+    {TokenType::SLASH, "Slash"},
+    {TokenType::STAR, "Star"},
+    {TokenType::BANG, "Bang"},
+    {TokenType::BANG_EQUAL, "BangEqual"},
+    {TokenType::EQUAL, "Equal"},
+    {TokenType::EQUAL_EQUAL, "EqualEqual"},
+    {TokenType::GREATER, "Greater"},
+    {TokenType::GREATER_EQUAL, "GreaterEqual"},
+    {TokenType::LESS, "Less"},
+    {TokenType::LESS_EQUAL, "LessEqual"},
+    {TokenType::IDENTIFIER, "Identifier"},
+    {TokenType::STRING, "String"},
+    {TokenType::NUMBER, "Number"},
+    {TokenType::AND, "And"},
+    {TokenType::CLASS, "Class"},
+    {TokenType::ELSE, "Else"},
+    {TokenType::FALSE, "False"},
+    {TokenType::FUN, "Fun"},
+    {TokenType::FOR, "For"},
+    {TokenType::IF, "If"},
+    {TokenType::NIL, "Nil"},
+    {TokenType::OR, "Or"},
+    {TokenType::PRINT, "Print"},
+    {TokenType::RETURN, "Return"},
+    {TokenType::SUPER, "Super"},
+    {TokenType::THIS, "This"},
+    {TokenType::TRUE, "True"},
+    {TokenType::VAR, "Var"},
+    {TokenType::WHILE, "While"},
+    {TokenType::EOF_, "EOF"},
+};
+
+std::string token_type_to_str(TokenType type) {
+  return TOKEN_TYPE_TO_STR[type];
 }

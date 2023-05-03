@@ -52,4 +52,4 @@ enum class TokenType {
   EOF_,
 };
 
-std::string token_type_repr(TokenType type);
+std::string token_type_to_str(TokenType type);

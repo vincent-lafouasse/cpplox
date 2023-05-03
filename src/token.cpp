@@ -14,6 +14,6 @@ Token::Token(TokenType type_,
 
 std::string Token::to_string(void) {
   std::stringstream sstream;
-  sstream << token_type_repr(type) << " " << lexeme << " " << literal;
+  sstream << token_type_to_str(type) << " " << lexeme << " " << literal;
   return sstream.str();
 }
