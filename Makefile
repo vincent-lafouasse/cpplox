@@ -1,5 +1,5 @@
 # Thanks to Job Vranish (https://spin.atomicobject.com/2016/08/26/makefile-c-projects/)
-TARGET_EXEC := exec
+TARGET_EXEC := cpplox
 
 BUILD_DIR := ./build
 SRC_DIRS := ./src
@@ -15,7 +15,7 @@ CPPFLAGS := $(INC_FLAGS) -MMD -MP -Wall -Wextra -pedantic -std=c++17 -g
 
 # Linking
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	@echo "Linking"
+	@echo "Linking\n"
 	@$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
 # Compile C 
@@ -32,10 +32,13 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 
 .PHONY: run
 run: $(BUILD_DIR)/$(TARGET_EXEC)
-	@echo "\nrunning $(TARGET_EXEC) !\n-------------------------------------"
+	@echo "running $(TARGET_EXEC) !\n-------------------------------------"
 	@$(BUILD_DIR)/$(TARGET_EXEC)
 
 .PHONY: pretty
 pretty:
 	clang-format -i src/*.{cpp,h}
 
+.PHONY: clean
+clean:
+	@rm -rf "$(BUILD_DIR)"
