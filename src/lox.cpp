@@ -3,6 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <vector>
+
+#include "scanner.h"
 
 static std::string load_file(std::string path);
 
@@ -18,7 +21,12 @@ void Lox::main(int argc, char* argv[]) {
 }
 
 void Lox::run(std::string source) {
-  std::cout << source << std::endl;
+  Scanner scanner = Scanner(source);
+  std::vector<Token> tokens = scanner.scan_tokens();
+
+  for (size_t i = 0; i < tokens.size(); i++) {
+    std::cout << (tokens.at(i)).to_string() << std::endl;
+  }
 }
 
 void Lox::run_prompt(void) {
