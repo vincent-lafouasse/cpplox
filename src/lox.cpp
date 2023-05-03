@@ -30,11 +30,25 @@ void Lox::run_prompt(void) {
     if (input == "")
       break;
     run(input);
+    had_error = false;
   }
 }
 
 void Lox::run_file(std::string path) {
   run(load_file(path));
+  if (had_error) {
+    exit(65);
+  }
+}
+
+void Lox::error(int line, std::string message) {
+  report(line, "", message);
+}
+
+void Lox::report(int line, std::string where, std::string message) {
+  std::cerr << "[line " << line << "] Error" + where + ": " + message
+            << std::endl;
+  had_error = true;
 }
 
 static std::string load_file(std::string path) {

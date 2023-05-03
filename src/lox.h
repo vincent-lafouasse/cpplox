@@ -4,10 +4,14 @@
 
 class Lox {
  public:
-  static void main(int argc, char* argv[]);
+  void main(int argc, char* argv[]);
+  void error(int line, std::string message);
 
  private:
-  static void run(std::string source);
-  static void run_prompt(void);
-  static void run_file(std::string path);
+  bool had_error = false;
+
+  void run(std::string source);
+  void run_prompt(void);
+  void run_file(std::string path);
+  void report(int line, std::string where, std::string message);
 };
