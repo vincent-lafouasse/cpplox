@@ -9,6 +9,8 @@
 
 static std::string load_file(std::string path);
 
+bool Lox::had_error = false;
+
 void Lox::main(int argc, char* argv[]) {
   if (argc > 2) {
     std::cout << "Usage: cpplox [script]" << std::endl;

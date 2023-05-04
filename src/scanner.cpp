@@ -52,6 +52,8 @@ void Scanner::scan_token() {
     case '*':
       add_token(TokenType::STAR);
       break;
+    default:
+      Lox::error(line, "Unexpected character.");
   }
 }
 
