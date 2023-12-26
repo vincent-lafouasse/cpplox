@@ -44,6 +44,7 @@ std::unordered_map<TokenType, std::string> TOKEN_TYPE_TO_STR = {
     {TokenType::EOF_, "EOF"},
 };
 
-std::string token_type_to_str(TokenType type) {
-  return TOKEN_TYPE_TO_STR[type];
+std::string token_type_to_str(TokenType type)
+{
+    return TOKEN_TYPE_TO_STR[type];
 }
