@@ -1,9 +1,4 @@
 build
-test/src/*
-!test/src
-!test/src/*test*
-
-test/assets
 
 # General
 .DS_Store
@@ -33,5 +28,4 @@ Temporary Items
 .apdisk
 
 # misc
-aux/
 .cache
