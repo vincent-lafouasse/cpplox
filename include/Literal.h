@@ -8,24 +8,30 @@
 #define STRING_INDEX 0
 #define DOUBLE_INDEX 1
 
-class Literal
+typedef void* None;
+
+using StrDoubleVariant = std::variant<std::string, double, None>;
+
+struct Literal : StrDoubleVariant
 {
-   public:
-    Literal() : data(){};
-    Literal(const std::string& string_literal) : data(string_literal){};
-    Literal(double x) : data(x){};
-    Literal(Literal& other) : data(other.data){};
-    Literal& operator=(const Literal& other)  // III. copy assignment
+    using StrDoubleVariant::StrDoubleVariant;
+    using StrDoubleVariant::operator=;
+
+    Literal(const Literal&) = default;
+    Literal(Literal&&) = default;
+
+    inline bool operator==(std::nullptr_t) const
     {
-        if (this == &other)
-            return *this;
-
-        this->data = other.data;
-        return *this;
+        return std::holds_alternative<None>(*this);
     }
-
-    friend std::ostream& operator<<(std::ostream& os, const Literal& literal);
-
-   private:
-    std::variant<std::string, double> data;
+    inline bool operator==(const Literal& other) const
+    {
+        if (std::holds_alternative<std::string>(*this) &&
+            std::holds_alternative<std::string>(other))
+            return std::get<std::string>(*this) == std::get<std::string>(other);
+        if (std::holds_alternative<double>(*this) &&
+            std::holds_alternative<double>(other))
+            return std::get<double>(*this) == std::get<double>(other);
+        return false;
+    }
 };

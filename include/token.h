@@ -23,16 +23,4 @@ class Token
           literal(other.literal),
           line(other.line){};
     std::string to_string(void) const;
-
-    Token& operator=(const Token& other)  // III. copy assignment
-    {
-        if (this == &other)
-            return *this;
-
-        this->line = other.line;
-        this->lexeme = other.lexeme;
-        this->literal = other.literal;
-        this->type = other.type;
-        return *this;
-    }
 };
