@@ -44,9 +44,10 @@ const std::unordered_map<TokenType, const char*> TOKEN_TYPE_TO_STR = {
     {TokenType::EOF_, "EOF"},
 };
 
-std::string token_type_to_str(TokenType type)
+std::ostream& operator<<(std::ostream& os, const TokenType& type)
 {
-    return TOKEN_TYPE_TO_STR.at(type);
+    os << TOKEN_TYPE_TO_STR.at(type);
+    return os;
 }
 
 const std::unordered_map<const char*, TokenType> KEYWORDS = {
@@ -67,10 +68,4 @@ std::optional<TokenType> get_keyword(const std::string& type)
     if (match == KEYWORDS.cend())
         return {};
     return match->second;
-}
-
-std::ostream& operator<<(std::ostream& os, const TokenType& type)
-{
-    os << token_type_to_str(type);
-    return os;
 }
