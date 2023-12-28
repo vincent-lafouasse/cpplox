@@ -21,10 +21,9 @@ std::vector<Token> Scanner::scan_tokens()
 
 void Scanner::scan_token()
 {
-    char c = advance();
-    std::cout << "scanning " + std::string(1, c) << std::endl;
-
     using TT = TokenType;
+
+    char c = advance();
 
     switch (c)
     {
