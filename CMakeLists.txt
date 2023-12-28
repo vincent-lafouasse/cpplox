@@ -11,6 +11,7 @@ src/main.cpp
 src/scanner.cpp
 src/token.cpp
 src/token_type.cpp
+src/Literal.cpp
 )
 target_compile_options(cpplox PUBLIC -Wall -Wextra -Wpedantic -g3)
 target_include_directories(cpplox PUBLIC include)

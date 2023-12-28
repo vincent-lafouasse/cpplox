@@ -3,4 +3,10 @@
 #include <string>
 #include <variant>
 
-typedef std::variant<std::string, int, unsigned int, char, double> Literal;
+class Literal
+{
+	Literal(const std::string& string_literal);
+	Literal(double x);
+private:
+	std::variant<std::string, double> data;
+};
