@@ -37,8 +37,9 @@ void Lox::run(std::string source)
 
     for (const Token& token : tokens)
     {
-        std::cout << token.to_string() << std::endl;
+        std::cout << token.to_string() << ' ';
     }
+    std::cout << '\n';
 }
 
 void Lox::run_prompt(void)
