@@ -12,7 +12,7 @@ std::vector<Token> Scanner::scan_tokens()
         start = current;
         scan_token();
     }
-    tokens.push_back(Token(TokenType::EOF_, "", "", line));
+    tokens.push_back(Token(TokenType::EOF_, "", Literal(), line));
     return tokens;
 }
 
@@ -120,7 +120,7 @@ void Scanner::scan_string()
     // advance past closing "
     advance();
 
-    std::string value = source.substr(start + 1, current - start - 2);
+    Literal value = source.substr(start + 1, current - start - 2);
     add_token(TokenType::String, value);
 }
 
@@ -128,10 +128,10 @@ void Scanner::scan_number() {}
 
 void Scanner::add_token(TokenType type)
 {
-    add_token(type, "");
+    add_token(type, Literal());
 }
 
-void Scanner::add_token(TokenType type, std::string literal)
+void Scanner::add_token(TokenType type, Literal literal)
 {
     tokens.push_back(
         Token(type, source.substr(start, current - start), literal, line));

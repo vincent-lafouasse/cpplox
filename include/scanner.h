@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "Literal.h"
 #include "token.h"
 
 class Scanner
@@ -20,7 +21,7 @@ class Scanner
 
     void scan_token();
     void add_token(TokenType type);
-    void add_token(TokenType type, std::string literal);
+    void add_token(TokenType type, Literal literal);
     void scan_string();
     void scan_number();
 
