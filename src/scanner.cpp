@@ -120,11 +120,24 @@ void Scanner::scan_string()
     // advance past closing "
     advance();
 
-    Literal value = source.substr(start + 1, current - start - 2);
+    std::string value = source.substr(start + 1, current - start - 2);
     add_token(TokenType::String, value);
 }
 
-void Scanner::scan_number() {}
+void Scanner::scan_number()
+{
+    while (std::isdigit(peek()))
+        advance();
+    if (peek() == '.' && std::isdigit(peek_next()))
+    {
+        advance();
+        while (std::isdigit(peek()))
+            advance();
+    }
+
+    std::string s = source.substr(start, current - start);
+    add_token(TokenType::Number, std::stod(s));
+}
 
 void Scanner::add_token(TokenType type)
 {
@@ -162,4 +175,11 @@ char Scanner::peek() const
     if (is_at_end())
         return '\0';
     return source.at(current);
+}
+
+char Scanner::peek_next() const
+{
+    if (current + 1 >= source.size())
+        return '\0';
+    return source.at(current + 1);
 }

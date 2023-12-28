@@ -29,4 +29,5 @@ class Scanner
     char advance();
     bool match(char expected);
     char peek() const;
+    char peek_next() const;
 };
