@@ -71,7 +71,18 @@ void Scanner::scan_token()
     }
 }
 
-bool Scanner::is_at_end()
+void Scanner::add_token(TokenType type)
+{
+    add_token(type, "");
+}
+
+void Scanner::add_token(TokenType type, std::string literal)
+{
+    tokens.push_back(
+        Token(type, source.substr(start, current - start), literal, line));
+}
+
+bool Scanner::is_at_end() const
 {
     return current >= source.size();
 }
@@ -91,13 +102,9 @@ bool Scanner::match(char expected)
     return true;
 }
 
-void Scanner::add_token(TokenType type)
+char Scanner::peek() const
 {
-    add_token(type, "");
-}
-
-void Scanner::add_token(TokenType type, std::string literal)
-{
-    tokens.push_back(
-        Token(type, source.substr(start, current - start), literal, line));
+	if (is_at_end())
+		return '\0';
+	return source.at(current);
 }

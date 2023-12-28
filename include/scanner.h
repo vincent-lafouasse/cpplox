@@ -19,9 +19,11 @@ class Scanner
     size_t line = 1;
 
     void scan_token();
-    bool is_at_end();
-    char advance();
-    bool match(char expected);
     void add_token(TokenType type);
     void add_token(TokenType type, std::string literal);
+
+    bool is_at_end() const;
+    char advance();
+    bool match(char expected);
+	char peek() const;
 };
