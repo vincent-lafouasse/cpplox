@@ -1,4 +1,4 @@
-#include "lox.h"
+#include "Lox.h"
 
 int main(int argc, char* argv[])
 {

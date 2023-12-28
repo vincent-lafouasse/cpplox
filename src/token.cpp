@@ -1,4 +1,4 @@
-#include "token.h"
+#include "Token.h"
 
 #include <sstream>
 std::string Token::to_string(void) const

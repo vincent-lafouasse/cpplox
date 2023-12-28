@@ -1,4 +1,4 @@
-#include "lox.h"
+#include "Lox.h"
 
 #include <fstream>
 #include <iostream>
@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-#include "scanner.h"
+#include "Scanner.h"
 
 static std::string load_file(const std::string& path);
 

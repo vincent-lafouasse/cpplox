@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Literal.h"
-#include "token.h"
+#include "Token.h"
 
 class Scanner
 {

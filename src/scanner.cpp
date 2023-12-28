@@ -1,9 +1,9 @@
-#include "scanner.h"
+#include "Scanner.h"
 
 #include <cctype>
 #include <iostream>
 
-#include "lox.h"
+#include "Lox.h"
 
 std::vector<Token> Scanner::scan_tokens()
 {
