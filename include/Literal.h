@@ -5,10 +5,6 @@
 #include <string>
 #include <variant>
 
-#define STRING_INDEX 0
-#define DOUBLE_INDEX 1
-#define NONE_INDEX 2
-
 class None
 {
 };
@@ -22,14 +18,19 @@ struct Literal : StrDoubleVariant
 
     // Literal(const Literal&) = default;
     // Literal(Literal&&) = delete;
+
+    std::string as_string() const;
+    double as_double() const;
+    bool is_string() const;
+    bool is_double() const;
+    bool is_none() const;
+
     inline bool operator==(const Literal& other) const
     {
-        if (std::holds_alternative<std::string>(*this) &&
-            std::holds_alternative<std::string>(other))
-            return std::get<std::string>(*this) == std::get<std::string>(other);
-        if (std::holds_alternative<double>(*this) &&
-            std::holds_alternative<double>(other))
-            return std::get<double>(*this) == std::get<double>(other);
+        if (this->is_string() && other.is_string())
+            return this->as_string() == other.as_string();
+        if (this->is_double() && other.is_double())
+            return this->as_double() == other.as_double();
         return false;
     }
 
