@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-std::unordered_map<TokenType, std::string> TOKEN_TYPE_TO_STR = {
+const std::unordered_map<TokenType, const char*> TOKEN_TYPE_TO_STR = {
     {TokenType::LeftParen, "LeftParen"},
     {TokenType::RightParen, "RightParen"},
     {TokenType::LeftBrace, "LeftBrace"},
@@ -46,5 +46,25 @@ std::unordered_map<TokenType, std::string> TOKEN_TYPE_TO_STR = {
 
 std::string token_type_to_str(TokenType type)
 {
-    return TOKEN_TYPE_TO_STR[type];
+    return TOKEN_TYPE_TO_STR.at(type);
+}
+
+const std::unordered_map<const char*, TokenType> KEYWORDS = {
+    {"and", TokenType::And},       {"class", TokenType::Class},
+    {"else", TokenType::Else},     {"false", TokenType::False},
+    {"for", TokenType::For},       {"fun", TokenType::Fun},
+    {"if", TokenType::If},         {"nil", TokenType::Nil},
+    {"or", TokenType::Or},         {"print", TokenType::Print},
+    {"return", TokenType::Return}, {"super", TokenType::Super},
+    {"this", TokenType::This},     {"true", TokenType::True},
+    {"var", TokenType::Var},       {"while", TokenType::While},
+};
+
+std::optional<TokenType> get_keyword(const std::string& type)
+{
+    auto match = KEYWORDS.find(type.c_str());
+
+    if (match == KEYWORDS.cend())
+        return {};
+    return match->second;
 }

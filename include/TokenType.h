@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 
 enum class TokenType
@@ -54,3 +55,4 @@ enum class TokenType
 };
 
 std::string token_type_to_str(TokenType type);
+std::optional<TokenType> get_keyword(const std::string&);
