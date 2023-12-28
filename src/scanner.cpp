@@ -20,37 +20,51 @@ void Scanner::scan_token()
     char c = advance();
     std::cout << "scanning " + std::string(1, c) << std::endl;
 
+    using TT = TokenType;
+
     switch (c)
     {
         case '(':
-            add_token(TokenType::LeftParen);
+            add_token(TT::LeftParen);
             break;
         case ')':
-            add_token(TokenType::RightParen);
+            add_token(TT::RightParen);
             break;
         case '{':
-            add_token(TokenType::LeftBrace);
+            add_token(TT::LeftBrace);
             break;
         case '}':
-            add_token(TokenType::RightBrace);
+            add_token(TT::RightBrace);
             break;
         case ',':
-            add_token(TokenType::Comma);
+            add_token(TT::Comma);
             break;
         case '.':
-            add_token(TokenType::Dot);
+            add_token(TT::Dot);
             break;
         case '-':
-            add_token(TokenType::Minus);
+            add_token(TT::Minus);
             break;
         case '+':
-            add_token(TokenType::Plus);
+            add_token(TT::Plus);
             break;
         case ';':
-            add_token(TokenType::Semicolon);
+            add_token(TT::Semicolon);
             break;
         case '*':
-            add_token(TokenType::Star);
+            add_token(TT::Star);
+            break;
+        case '!':
+            add_token(match('=') ? TT::BangEqual : TT::Bang);
+            break;
+        case '=':
+            add_token(match('=') ? TT::EqualEqual : TT::Equal);
+            break;
+        case '<':
+            add_token(match('=') ? TT::LessEqual : TT::Less);
+            break;
+        case '>':
+            add_token(match('=') ? TT::GreaterEqual : TT::Greater);
             break;
         default:
             Lox::error(line, "Unexpected character.");
