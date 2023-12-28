@@ -102,6 +102,10 @@ void Scanner::scan_token()
             {
                 scan_number();
             }
+            else if (is_alnum(c))
+            {
+                scan_identifier();
+            }
             else
             {
                 Lox::error(line, "Unexpected character.");
@@ -141,6 +145,15 @@ void Scanner::scan_number()
 
     std::string s = source.substr(start, current - start);
     add_token(TokenType::Number, std::stod(s));
+}
+
+void Scanner::scan_identifier()
+{
+    while (is_alnum(peek()))
+        advance();
+
+    std::string value = source.substr(start + 1, current - start - 2);
+    add_token(TokenType::Identifier, value);
 }
 
 void Scanner::add_token(TokenType type)
