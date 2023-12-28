@@ -4,11 +4,11 @@
 std::string Token::to_string(void) const
 {
     std::stringstream sstream;
-    if (std::holds_alternative<None>(literal))
+    if (literal.is_none())
         sstream << type;
-    else if (std::holds_alternative<std::string>(literal))
-        sstream << std::get<std::string>(literal);
-    if (std::holds_alternative<double>(literal))
-        sstream << std::get<double>(literal);
+    else if (literal.is_string())
+        sstream << "str'" << literal.as_string();
+    else if (literal.is_double())
+        sstream << "num'" << literal.as_double();
     return sstream.str();
 }
