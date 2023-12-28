@@ -152,8 +152,11 @@ void Scanner::scan_identifier()
     while (is_alnum(peek()))
         advance();
 
-    std::string value = source.substr(start + 1, current - start - 2);
-    add_token(TokenType::Identifier, value);
+    std::string value = source.substr(start, current - start);
+
+	TokenType type = get_keyword(value).value_or(TokenType::Identifier);
+
+    add_token(type, value);
 }
 
 void Scanner::add_token(TokenType type)
