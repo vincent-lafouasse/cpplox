@@ -24,6 +24,7 @@ void Scanner::scan_token()
 
     switch (c)
     {
+		// parse single char tokens
         case '(':
             add_token(TT::LeftParen);
             break;
@@ -54,6 +55,7 @@ void Scanner::scan_token()
         case '*':
             add_token(TT::Star);
             break;
+		// parse two char tokens
         case '!':
             add_token(match('=') ? TT::BangEqual : TT::Bang);
             break;
@@ -66,6 +68,7 @@ void Scanner::scan_token()
         case '>':
             add_token(match('=') ? TT::GreaterEqual : TT::Greater);
             break;
+		// parse comments by ignoring everything until newline
 		case '/':
 			if (match('/'))
 			{
@@ -77,6 +80,7 @@ void Scanner::scan_token()
 				add_token(TT::Slash);
 			}
 			break;
+		// ignore whitespace
 		case ' ':
 		case '\r':
 		case '\t':
