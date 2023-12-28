@@ -4,11 +4,6 @@
 
 #include "lox.h"
 
-Scanner::Scanner(std::string source_)
-{
-    source = source_;
-}
-
 std::vector<Token> Scanner::scan_tokens()
 {
     while (!is_at_end())
@@ -79,5 +74,6 @@ void Scanner::add_token(TokenType type)
 
 void Scanner::add_token(TokenType type, std::string literal)
 {
-    tokens.push_back(Token(type, source.substr(start, current), literal, line));
+    tokens.push_back(
+        Token(type, source.substr(start, current - start), literal, line));
 }

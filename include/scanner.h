@@ -8,7 +8,7 @@
 class Scanner
 {
    public:
-    Scanner(std::string source_);
+    Scanner(std::string source) : source(source), tokens(){};
     std::vector<Token> scan_tokens();
 
    private:
