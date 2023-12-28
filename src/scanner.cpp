@@ -77,6 +77,13 @@ void Scanner::scan_token()
 				add_token(TT::Slash);
 			}
 			break;
+		case ' ':
+		case '\r':
+		case '\t':
+			break;
+		case '\n':
+			line++;
+			break;
         default:
             Lox::error(line, "Unexpected character.");
     }
