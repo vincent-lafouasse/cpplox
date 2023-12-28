@@ -3,3 +3,13 @@
 !*+-/=<> <= == // operators
 "hello world"
 0.42069
+
+class MyClass {
+	var attribute
+	var second_attribute = true or (abc == def)
+
+	fun method(n) {
+		print super while true
+		return n * 42 - nil;
+	}
+}
