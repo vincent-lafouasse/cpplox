@@ -66,6 +66,17 @@ void Scanner::scan_token()
         case '>':
             add_token(match('=') ? TT::GreaterEqual : TT::Greater);
             break;
+		case '/':
+			if (match('/'))
+			{
+				while (peek() != '\n' && !is_at_end())
+					advance();
+			}
+			else
+			{
+				add_token(TT::Slash);
+			}
+			break;
         default:
             Lox::error(line, "Unexpected character.");
     }
