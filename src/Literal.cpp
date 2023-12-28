@@ -2,8 +2,6 @@
 
 std::ostream& operator<<(std::ostream& os, const Literal& literal)
 {
-    if (literal == nullptr)
-        return os;
     switch (literal.index())
     {
         case STRING_INDEX:
@@ -12,6 +10,7 @@ std::ostream& operator<<(std::ostream& os, const Literal& literal)
         case DOUBLE_INDEX:
             os << std::get<DOUBLE_INDEX>(literal);
             break;
+        case NONE_INDEX:
         default:
             break;
     }

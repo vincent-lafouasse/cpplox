@@ -7,8 +7,11 @@
 
 #define STRING_INDEX 0
 #define DOUBLE_INDEX 1
+#define NONE_INDEX 2
 
-typedef void* None;
+class None
+{
+};
 
 using StrDoubleVariant = std::variant<std::string, double, None>;
 
@@ -19,11 +22,6 @@ struct Literal : StrDoubleVariant
 
     // Literal(const Literal&) = default;
     // Literal(Literal&&) = delete;
-
-    inline bool operator==(std::nullptr_t) const
-    {
-        return std::holds_alternative<None>(*this);
-    }
     inline bool operator==(const Literal& other) const
     {
         if (std::holds_alternative<std::string>(*this) &&

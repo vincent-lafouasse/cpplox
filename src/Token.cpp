@@ -4,7 +4,7 @@
 std::string Token::to_string(void) const
 {
     std::stringstream sstream;
-    if (std::holds_alternative<void*>(literal))
+    if (std::holds_alternative<None>(literal))
         sstream << type;
     else if (std::holds_alternative<std::string>(literal))
         sstream << std::get<std::string>(literal);
