@@ -24,7 +24,7 @@ void Scanner::scan_token()
 
     switch (c)
     {
-		// parse single char tokens
+            // parse single char tokens
         case '(':
             add_token(TT::LeftParen);
             break;
@@ -55,7 +55,7 @@ void Scanner::scan_token()
         case '*':
             add_token(TT::Star);
             break;
-		// parse two char tokens
+            // parse two char tokens
         case '!':
             add_token(match('=') ? TT::BangEqual : TT::Bang);
             break;
@@ -68,29 +68,52 @@ void Scanner::scan_token()
         case '>':
             add_token(match('=') ? TT::GreaterEqual : TT::Greater);
             break;
-		// parse comments by ignoring everything until newline
-		case '/':
-			if (match('/'))
-			{
-				while (peek() != '\n' && !is_at_end())
-					advance();
-			}
-			else
-			{
-				add_token(TT::Slash);
-			}
-			break;
-		// ignore whitespace
-		case ' ':
-		case '\r':
-		case '\t':
-			break;
-		case '\n':
-			line++;
-			break;
+        // parse comments by ignoring everything until newline
+        case '/':
+            if (match('/'))
+            {
+                while (peek() != '\n' && !is_at_end())
+                    advance();
+            }
+            else
+            {
+                add_token(TT::Slash);
+            }
+            break;
+        // ignore whitespace
+        case ' ':
+        case '\r':
+        case '\t':
+            break;
+        case '\n':
+            line++;
+            break;
+        // parse strings
+        case '"':
+            scan_string();
+            break;
         default:
             Lox::error(line, "Unexpected character.");
     }
+}
+
+void Scanner::scan_string()
+{
+    while (peek() != '"' && !is_at_end())
+    {
+        if (peek() == '\n')
+            line++;
+        advance();
+    }
+    if (is_at_end())
+    {
+        Lox::error(line, "Unterminated string.");
+    }
+    // advance past closing "
+    advance();
+
+    std::string value = source.substr(start + 1, current - start - 2);
+    add_token(TokenType::String, value);
 }
 
 void Scanner::add_token(TokenType type)
@@ -126,7 +149,7 @@ bool Scanner::match(char expected)
 
 char Scanner::peek() const
 {
-	if (is_at_end())
-		return '\0';
-	return source.at(current);
+    if (is_at_end())
+        return '\0';
+    return source.at(current);
 }
