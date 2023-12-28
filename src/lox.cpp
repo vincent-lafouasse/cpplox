@@ -32,12 +32,12 @@ void Lox::main(int argc, char* argv[])
 
 void Lox::run(std::string source)
 {
-    Scanner scanner = Scanner(source);
+    Scanner scanner{source};
     std::vector<Token> tokens = scanner.scan_tokens();
 
-    for (size_t i = 0; i < tokens.size(); i++)
+    for (const Token& token : tokens)
     {
-        std::cout << (tokens.at(i)).to_string() << std::endl;
+        std::cout << token.to_string() << std::endl;
     }
 }
 

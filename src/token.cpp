@@ -13,7 +13,7 @@ Token::Token(TokenType type_,
     line = line_;
 }
 
-std::string Token::to_string(void)
+std::string Token::to_string(void) const
 {
     std::stringstream sstream;
     sstream << token_type_to_str(type) << " " << lexeme << " "

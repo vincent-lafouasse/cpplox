@@ -17,5 +17,5 @@ class Token
           std::string lexeme_,
           std::string literal_,
           int line_);
-    std::string to_string(void);
+    std::string to_string(void) const;
 };
