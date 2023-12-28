@@ -17,10 +17,7 @@ class Token
     Token() = default;
     Token(TokenType type, std::string lexeme, Literal literal, int line)
         : type(type), lexeme(lexeme), literal(literal), line(line){};
-    Token(Token& other)
-        : type(other.type),
-          lexeme(other.lexeme),
-          literal(other.literal),
-          line(other.line){};
+    Token(const Token& other) = default;
+    Token(Token&& other) = default;
     std::string to_string(void) const;
 };

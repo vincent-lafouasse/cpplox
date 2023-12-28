@@ -17,8 +17,8 @@ struct Literal : StrDoubleVariant
     using StrDoubleVariant::StrDoubleVariant;
     using StrDoubleVariant::operator=;
 
-    Literal(const Literal&) = default;
-    Literal(Literal&&) = default;
+    // Literal(const Literal&) = default;
+    // Literal(Literal&&) = delete;
 
     inline bool operator==(std::nullptr_t) const
     {
@@ -34,4 +34,6 @@ struct Literal : StrDoubleVariant
             return std::get<double>(*this) == std::get<double>(other);
         return false;
     }
+
+    friend std::ostream& operator<<(std::ostream& os, const Literal& literal);
 };

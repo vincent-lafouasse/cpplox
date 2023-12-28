@@ -12,7 +12,7 @@ std::vector<Token> Scanner::scan_tokens()
         start = current;
         scan_token();
     }
-    tokens.push_back(Token(TokenType::EOF_, "", Literal(), line));
+    tokens.push_back(Token(TokenType::EOF_, "", nullptr, line));
     return tokens;
 }
 
@@ -128,7 +128,7 @@ void Scanner::scan_number() {}
 
 void Scanner::add_token(TokenType type)
 {
-    add_token(type, Literal());
+    add_token(type, nullptr);
 }
 
 void Scanner::add_token(TokenType type, Literal literal)
