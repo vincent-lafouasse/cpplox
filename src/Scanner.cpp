@@ -5,6 +5,10 @@
 
 #include "Lox.h"
 
+static bool is_digit(char c);
+static bool is_alpha(char c);
+static bool is_alnum(char c);
+
 std::vector<Token> Scanner::scan_tokens()
 {
     while (!is_at_end())
@@ -94,7 +98,7 @@ void Scanner::scan_token()
             scan_string();
             break;
         default:
-            if (std::isdigit(c))
+            if (is_digit(c))
             {
                 scan_number();
             }
@@ -126,12 +130,12 @@ void Scanner::scan_string()
 
 void Scanner::scan_number()
 {
-    while (std::isdigit(peek()))
+    while (is_digit(peek()))
         advance();
-    if (peek() == '.' && std::isdigit(peek_next()))
+    if (peek() == '.' && is_digit(peek_next()))
     {
         advance();
-        while (std::isdigit(peek()))
+        while (is_digit(peek()))
             advance();
     }
 
@@ -182,4 +186,29 @@ char Scanner::peek_next() const
     if (current + 1 >= source.size())
         return '\0';
     return source.at(current + 1);
+}
+
+static bool is_upper(char c)
+{
+    return c >= 'A' && c <= 'Z';
+}
+
+static bool is_lower(char c)
+{
+    return c >= 'a' && c <= 'z';
+}
+
+static bool is_digit(char c)
+{
+    return c >= '0' && c <= '9';
+}
+
+static bool is_alpha(char c)
+{
+    return is_upper(c) || is_lower(c) || (c == '_');
+}
+
+static bool is_alnum(char c)
+{
+    return is_digit(c) || is_alpha(c);
 }
