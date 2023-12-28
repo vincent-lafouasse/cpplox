@@ -2,15 +2,12 @@
 
 #include <sstream>
 
-Token::Token(TokenType type_,
-             std::string lexeme_,
-             std::string literal_,
-             int line_)
+Token::Token(TokenType type, std::string lexeme, std::string literal, int line)
 {
-    type = type_;
-    lexeme = lexeme_;
-    literal = literal_;
-    line = line_;
+    this->type = type;
+    this->lexeme = lexeme;
+    this->literal = literal;
+    this->line = line;
 }
 
 std::string Token::to_string(void) const
