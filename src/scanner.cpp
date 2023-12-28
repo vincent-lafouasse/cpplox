@@ -67,6 +67,16 @@ char Scanner::advance()
     return source.at(current++);
 }
 
+bool Scanner::match(char expected)
+{
+    if (is_at_end())
+        return false;
+    if (source.at(current) != expected)
+        return false;
+    current++;
+    return true;
+}
+
 void Scanner::add_token(TokenType type)
 {
     add_token(type, "");

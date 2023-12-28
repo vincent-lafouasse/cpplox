@@ -21,6 +21,7 @@ class Scanner
     void scan_token();
     bool is_at_end();
     char advance();
+    bool match(char expected);
     void add_token(TokenType type);
     void add_token(TokenType type, std::string literal);
 };
