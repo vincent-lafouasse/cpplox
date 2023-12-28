@@ -29,6 +29,15 @@ bool Literal::is_none() const
     return std::holds_alternative<None>(*this);
 }
 
+inline bool Literal::operator==(const Literal& other) const
+{
+    if (this->is_string() && other.is_string())
+        return this->as_string() == other.as_string();
+    if (this->is_double() && other.is_double())
+        return this->as_double() == other.as_double();
+    return false;
+}
+
 std::ostream& operator<<(std::ostream& os, const Literal& literal)
 {
     switch (literal.index())
