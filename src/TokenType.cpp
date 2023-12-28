@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-const std::unordered_map<TokenType, const char*> TOKEN_TYPE_TO_STR = {
+const std::unordered_map<TokenType, std::string> TOKEN_TYPE_TO_STR = {
     {TokenType::LeftParen, "LeftParen"},
     {TokenType::RightParen, "RightParen"},
     {TokenType::LeftBrace, "LeftBrace"},
@@ -50,7 +50,7 @@ std::ostream& operator<<(std::ostream& os, const TokenType& type)
     return os;
 }
 
-const std::unordered_map<const char*, TokenType> KEYWORDS = {
+const std::unordered_map<std::string, TokenType> KEYWORDS = {
     {"and", TokenType::And},       {"class", TokenType::Class},
     {"else", TokenType::Else},     {"false", TokenType::False},
     {"for", TokenType::For},       {"fun", TokenType::Fun},
@@ -63,9 +63,12 @@ const std::unordered_map<const char*, TokenType> KEYWORDS = {
 
 std::optional<TokenType> get_keyword(const std::string& type)
 {
-    auto match = KEYWORDS.find(type.c_str());
+    auto match = KEYWORDS.find(type);
 
     if (match == KEYWORDS.cend())
+    {
+        std::cout << "not a keyword\n";
         return {};
+    }
     return match->second;
 }
