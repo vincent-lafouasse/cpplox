@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 
+#include <stdio.h>
+
 #include "scanner.h"
 
 static std::string load_file(std::string path);
