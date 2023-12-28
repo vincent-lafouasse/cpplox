@@ -28,34 +28,34 @@ void Scanner::scan_token()
     switch (c)
     {
         case '(':
-            add_token(TokenType::LEFT_PAREN);
+            add_token(TokenType::LeftParen);
             break;
         case ')':
-            add_token(TokenType::RIGHT_PAREN);
+            add_token(TokenType::RightParen);
             break;
         case '{':
-            add_token(TokenType::LEFT_BRACE);
+            add_token(TokenType::LeftBrace);
             break;
         case '}':
-            add_token(TokenType::RIGHT_BRACE);
+            add_token(TokenType::RightBrace);
             break;
         case ',':
-            add_token(TokenType::COMMA);
+            add_token(TokenType::Comma);
             break;
         case '.':
-            add_token(TokenType::DOT);
+            add_token(TokenType::Dot);
             break;
         case '-':
-            add_token(TokenType::MINUS);
+            add_token(TokenType::Minus);
             break;
         case '+':
-            add_token(TokenType::PLUS);
+            add_token(TokenType::Plus);
             break;
         case ';':
-            add_token(TokenType::SEMICOLON);
+            add_token(TokenType::Semicolon);
             break;
         case '*':
-            add_token(TokenType::STAR);
+            add_token(TokenType::Star);
             break;
         default:
             Lox::error(line, "Unexpected character.");
