@@ -6,7 +6,6 @@
 #include "Lox.h"
 
 static bool is_digit(char c);
-static bool is_alpha(char c);
 static bool is_alnum(char c);
 
 std::vector<Token> Scanner::scan_tokens()
