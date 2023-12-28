@@ -68,3 +68,9 @@ std::optional<TokenType> get_keyword(const std::string& type)
         return {};
     return match->second;
 }
+
+std::ostream& operator<<(std::ostream& os, const TokenType& type)
+{
+    os << token_type_to_str(type);
+    return os;
+}

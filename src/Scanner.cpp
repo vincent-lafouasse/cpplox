@@ -153,7 +153,7 @@ void Scanner::scan_identifier()
 
     std::string value = source.substr(start, current - start);
 
-	TokenType type = get_keyword(value).value_or(TokenType::Identifier);
+    TokenType type = get_keyword(value).value_or(TokenType::Identifier);
 
     add_token(type, value);
 }
