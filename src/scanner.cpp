@@ -1,5 +1,6 @@
 #include "scanner.h"
 
+#include <cctype>
 #include <iostream>
 
 #include "lox.h"
@@ -93,7 +94,14 @@ void Scanner::scan_token()
             scan_string();
             break;
         default:
-            Lox::error(line, "Unexpected character.");
+            if (std::isdigit(c))
+            {
+                scan_number();
+            }
+            else
+            {
+                Lox::error(line, "Unexpected character.");
+            }
     }
 }
 
@@ -115,6 +123,8 @@ void Scanner::scan_string()
     std::string value = source.substr(start + 1, current - start - 2);
     add_token(TokenType::String, value);
 }
+
+void Scanner::scan_number() {}
 
 void Scanner::add_token(TokenType type)
 {

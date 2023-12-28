@@ -22,6 +22,7 @@ class Scanner
     void add_token(TokenType type);
     void add_token(TokenType type, std::string literal);
     void scan_string();
+    void scan_number();
 
     bool is_at_end() const;
     char advance();
