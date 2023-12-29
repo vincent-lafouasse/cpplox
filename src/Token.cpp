@@ -1,8 +1,7 @@
 #include "Token.h"
 
 #include <sstream>
-std::string Token::to_string(void) const
-{
+std::string Token::to_string(void) const {
     std::stringstream sstream;
     if (literal.is_none())
         sstream << type;

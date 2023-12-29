@@ -4,8 +4,7 @@
 #include <optional>
 #include <string>
 
-enum class TokenType
-{
+enum class TokenType {
     // Single-character tokens.
     LeftParen,
     RightParen,

@@ -6,8 +6,7 @@
 #include "Literal.h"
 #include "Token.h"
 
-class Scanner
-{
+class Scanner {
    public:
     Scanner(std::string source) : source(source), tokens(){};
     std::vector<Token> scan_tokens();

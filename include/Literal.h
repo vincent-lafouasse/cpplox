@@ -5,14 +5,11 @@
 #include <string>
 #include <variant>
 
-class None
-{
-};
+class None {};
 
 using StrDoubleVariant = std::variant<std::string, double, None>;
 
-struct Literal : StrDoubleVariant
-{
+struct Literal : StrDoubleVariant {
     using StrDoubleVariant::StrDoubleVariant;
     using StrDoubleVariant::operator=;
 

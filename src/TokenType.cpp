@@ -44,8 +44,7 @@ const std::unordered_map<TokenType, std::string> TOKEN_TYPE_TO_STR = {
     {TokenType::EOF_, "EOF"},
 };
 
-std::ostream& operator<<(std::ostream& os, const TokenType& type)
-{
+std::ostream& operator<<(std::ostream& os, const TokenType& type) {
     os << TOKEN_TYPE_TO_STR.at(type);
     return os;
 }
@@ -61,12 +60,10 @@ const std::unordered_map<std::string, TokenType> KEYWORDS = {
     {"var", TokenType::Var},       {"while", TokenType::While},
 };
 
-std::optional<TokenType> get_keyword(const std::string& type)
-{
+std::optional<TokenType> get_keyword(const std::string& type) {
     auto match = KEYWORDS.find(type);
 
-    if (match == KEYWORDS.cend())
-    {
+    if (match == KEYWORDS.cend()) {
         std::cout << "not a keyword\n";
         return {};
     }

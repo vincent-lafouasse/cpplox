@@ -2,8 +2,7 @@
 
 #include <string>
 
-class Lox
-{
+class Lox {
    public:
     static void main(int argc, char* argv[]);
     static void error(int line, const std::string& message);

@@ -5,8 +5,7 @@
 
 #include <string>
 
-class Token
-{
+class Token {
    private:
     TokenType type;
     std::string lexeme;
